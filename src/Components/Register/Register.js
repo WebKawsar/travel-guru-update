@@ -1,16 +1,15 @@
+import { Box} from '@material-ui/core';
 import React, { useContext, useState } from 'react';
-import { Alert, Col, Container, Row } from 'react-bootstrap';
-import "./Login.css";
+import { Col, Row, Container, Alert, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { Box, Link } from '@material-ui/core';
-import { handleLoginSystem, initializeFirebaseFramework } from '../../Firebase/FirebaseManager';
 import { useHistory, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { handleRegisterSystem, initializeFirebaseFramework } from '../../Firebase/FirebaseManager';
+import "./Register.css";
 
 
 
-const Login = (props) => {
-
+const Register = (props) => {
     initializeFirebaseFramework();
 
     const history = useHistory();
@@ -18,47 +17,42 @@ const Login = (props) => {
     const { from } = location.state || { from: { pathname: "/" } };
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = data => {
         
-        handleLoginSystem(data)
+        handleRegisterSystem(data)
         .then(response => {
-            
+
             if(response.success){
-                
-                const loginUser = {...loggedInUser}
-                loginUser.email = data.email;
-                loginUser.password = data.password;
-                loginUser.success = true;
-                loginUser.error = "";
+                const registerUser = {...loggedInUser, ...response};
 
-                setLoggedInUser(loginUser);
+                registerUser.name = `${data.firstName} ${data.lastName}`;
+                registerUser.email = data.email;
+                registerUser.password = data.password;
+    
+                setLoggedInUser(registerUser);
                 history.replace(from);
-
             }
-            else{
+            else {
+                
+                const registerUserError = {...loggedInUser};
+                registerUserError.success = false;
+                registerUserError.error = response.error;
 
-                const loginUserError = {...loggedInUser}
-                loginUserError.success = false;
-                loginUserError.error = response.error;
-
-                setLoggedInUser(loginUserError);
-
+                setLoggedInUser(registerUserError);
             }
-
         })
 
     }
 
-
     const [show, setShow] = useState(true);
     return (
         <Container>
-            <Box className="login-section">
-                <Box className="login">
+            <Box className="register-section">
+                <Box className="register">
                     <Row className="justify-content-md-center">
                         <Col md={6}>
-
+                            
                             {
                                 (loggedInUser.error && show) && 
                                     <Alert variant="danger" onClick={() => setShow(false)} dismissible>
@@ -68,24 +62,40 @@ const Login = (props) => {
                                  
                             }
 
-                            <Box className="login-form">
-                                <h3>Login</h3>
+                            <Box className="register-form">
+                                <h3>Create an account</h3>
                                 <form onSubmit={handleSubmit(onSubmit)}>
+
+                                    <Box className="input-box">
+                                        <input type="text" id="firstName" name="firstName" ref={register({ required: "First name is required"})} placeholder="First name"/>
+                                        {
+                                            errors.firstName && <span className="error">{errors.firstName.message}</span>
+                                        }
+                                    </Box>
+
+                                    <Box className="input-box">
+                                        <input type="text" name="lastName" ref={register({ required: "Last name is required"})} placeholder="Last name"/>
+                                        {
+                                            errors.lastName && <span className="error">{errors.lastName.message}</span>
+                                        }
+                                    </Box>
 
                                     <Box className="input-box">
                                         <input type="email" name="email" ref={register({ 
                                             required: "Email is required",
                                             pattern: {
                                                 value: /\S+@\S+\.\S+/,
-                                                message: "Please provide valid email address"
+                                                message: "Please provide a valid email address"
                                             }
-                                        })} placeholder="Your email"/>
+                                            })} placeholder="Email address"/>
                                         {
                                             errors.email && <span className="error">{errors.email.message}</span>
                                         }
+
                                     </Box>
 
                                     <Box className="input-box">
+                                        
                                         <input type="password" name="password" ref={register({
                                             required: "Password is required",
                                             minLength: {
@@ -96,22 +106,27 @@ const Login = (props) => {
                                                 value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
                                                 message: "Password containing characters, number, upper and lowercase"
                                             }
-                                        })} placeholder="Your password"/>
+                                            })} placeholder="Password"/>
                                         {
                                             errors.password && <span className="error">{errors.password.message}</span>
                                         }
+
                                     </Box>
 
-                                    <Box className="special-input">
-                                        <label htmlFor="checkbox"><input type="checkbox" name="checkbox" id="checkbox"/> Remember me</label>
-                                        <Link className="forgot-pass" to="/login">Forgot password</Link>
+                                    <Box className="input-box">
+                                        <input type="password" name="rePassword" ref={register({
+                                            required: "Confirm password is required",
+                                            validate: (value) => value === watch("password") || "Passwords do not match"
+                                        })} placeholder="Confirm password"/>
+                                        {
+                                            errors.rePassword && <span className="error">{errors.rePassword.message}</span>
+                                        }
                                     </Box>
                                     
-                                    <input type="submit" value="Log in"/>
+                                    <input type="submit" value="Create an account" />
                                 </form>
 
-                                <p className="create-account">Don't have an account? <span className="toogle" onClick={props.handleLogin}>Create an account</span>
-                                </p> 
+                                <p className="already-account">Already have an account? <span onClick={props.handleRegister} className="toogle">Login</span></p> 
                             </Box> 
                         </Col>
                     </Row>
@@ -121,4 +136,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Register;

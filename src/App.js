@@ -2,11 +2,11 @@ import React, { createContext, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Home from './Components/Home/Home';
-import Login from './Components/Login/Login';
 import SearchHotel from './Components/SearchHotel/SearchHotel';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Booking from './Components/Booking/Booking';
+import Home from './Pages/Home';
+import LoginPage from './Pages/LoginPage';
 
 
 export const UserContext = createContext();
@@ -16,7 +16,6 @@ export const UserContext = createContext();
 function App() {
 
   const [loggedInUser, setLoggedInUser] = useState({});
-
 
   return (
 
@@ -30,7 +29,7 @@ function App() {
           </Route>
 
           <Route path="/login">
-            <Login></Login>
+            <LoginPage></LoginPage>
           </Route>
 
           <Route path="/tour/:place">

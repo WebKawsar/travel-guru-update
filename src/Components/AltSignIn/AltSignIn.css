@@ -1,0 +1,54 @@
+.alternate-signin-system {
+    margin-top: 25px;
+}
+
+.or-section {
+    overflow: hidden;
+    text-align: center;
+}
+
+.or-section hr:first-child {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 2px solid lightgrey;
+    width: 45%;
+    float: left;
+    margin-left: 10px;
+}
+
+.or-section hr:last-child {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 2px solid lightgrey;
+    width: 45%;
+    float: right;
+    margin-right: 10px;
+}
+
+.facebook {
+    margin: 20px 0 12px ;
+}
+
+.facebook,
+.google {
+    display: flex;
+    align-items: center;
+    border: 2px solid lightgrey;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.facebook p,
+.google p {
+    margin: 0;
+    width: 200px;
+    margin: auto;
+}
+
+.icon {
+    width: 40px;
+    padding: 3px;
+}
+

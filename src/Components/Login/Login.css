@@ -1,25 +1,23 @@
 
-
-.login-section {
-    margin-bottom: 50px;
-}
-
-.login-system {
-    margin-top: 25px;
-}
-
-
 .login-form {
     border: 2px solid lightgray;
-    padding: 50px;
-    margin-bottom: 30px;
+    padding: 30px 50px;
 }
+
+.login-form input:focus {
+    outline: 0;
+}
+
+.login-form input:focus::placeholder {
+    color: transparent;
+  }
+
 
 .login-form input[type="email"],
 .login-form input[type="password"] {
     width: 100%;
     padding: 10px 0;
-    margin: 20px 0;
+    margin: 5px 0;
     border: none;
     border-bottom: 2px solid lightgray;
 }
@@ -30,226 +28,43 @@
     padding: 12px 0;
     border: none;
     border-radius: 3px;
-    margin-bottom: 15px;
+    margin: 30px 0 15px;
 }
 
-.login-form input[type="email"]:focus {
-    border: none;
-    border-bottom: 2px solid lightgray;
-}
-
-.login-form input[type="password"]:focus {
-    border: none;
-    border-bottom: 1px solid lightgray;
-}
-
-.inine-input {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 35px;
-}
-
-.login-form label {
-    cursor: pointer;
-}
-
-.login-form span a {
-    color: #F9A51A;
-    text-decoration: underline;
-}
-
-.login-form .forgot-pass {
-    color: #F9A51A;
-    text-decoration: underline;
-}
-
-
-/********/
-
-.icon {
-    width: 40px;
-    padding: 3px;
-}
-
-.facebook,
-.google {
-    display: flex;
-    align-items: center;
-    border: 2px solid lightgrey;
-    cursor: pointer;
-    border-radius: 30px;
-}
-
-.facebook {
-    margin: 20px 0 12px ;
-}
-
-.facebook p,
-.google p {
-    margin: 0;
-    width: 200px;
-    margin: auto;
-}
-
-.alternate-login-system {
-    width: 70%;
+.login-form .create-account {
     text-align: center;
-    margin: auto;
+    margin: 0;
 }
 
-.or-section {
+.login-form .error {
+    color: red;
+}
+
+.login-form .input-box {
+    margin-bottom: 20px;
+}
+
+.login-form .special-input {
     overflow: hidden;
 }
 
-.or-section hr:first-child {
-    border: 1px solid lightgrey;
-    width: 40%;
+.login-form .special-input label {
     float: left;
 }
 
-
-.or-section hr:last-child {
-    border: 1px solid lightgrey;
-    width: 50%;
+.login-form .special-input a {
     float: right;
 }
 
-/***********/
 
-.login-form form span::before {
-    display: inline;
-    content: "⚠ ";
-  }
-
-.error {
+.login-form .error {
     color: red;
 }
 
 .toogle {
     color: #F9A51A;
-}
-
-
-/****************************************************************************************************************
-                                    Register Form Css
-****************************************************************************************************************/
-
-
-
-.register-section {
-    margin-bottom: 50px;
-}
-
-.register-system {
-    margin-top: 25px;
-}
-
-
-.register-form {
-    border: 2px solid lightgray;
-    padding: 50px;
-    margin-bottom: 30px;
-}
-
-/* .register-form input[type="text"]:focus {
-    border-style: none;
-    background-color: lightsalmon;
-} */
-
-
-.register-form input[type="text"],
-.register-form input[type="email"],
-.register-form input[type="password"] {
-    width: 100%;
-    padding: 10px 0;
-    margin: 20px 0;
-    border: none;
-    border-bottom: 2px solid lightgray;
-}
-
-.register-form input[type="submit"] {
-    background-color: #F9A51A;
-    width: 100%;
-    padding: 12px 0;
-    border: none;
-    border-radius: 3px;
-    margin-bottom: 15px;
-    margin-top: 35px;
-}
-
-
-.register-form label {
     cursor: pointer;
-}
-
-.register-form span a {
-    color: #F9A51A;
-    text-decoration: underline;
-}
-
-.register-form .forgot-pass {
-    color: #F9A51A;
     text-decoration: underline;
 }
 
 
-/********/
-
-.icon {
-    width: 40px;
-    padding: 3px;
-}
-
-.facebook,
-.google {
-    display: flex;
-    align-items: center;
-    border: 2px solid lightgrey;
-    cursor: pointer;
-    border-radius: 30px;
-}
-
-.facebook {
-    margin: 20px 0 12px ;
-}
-
-.facebook p,
-.google p {
-    margin: 0;
-    width: 200px;
-    margin: auto;
-}
-
-.alternate-register-system {
-    width: 70%;
-    text-align: center;
-    margin: auto;
-}
-
-.or-section {
-    overflow: hidden;
-}
-
-.or-section hr:first-child {
-    border: 1px solid lightgrey;
-    width: 40%;
-    float: left;
-}
-
-
-.or-section hr:last-child {
-    border: 1px solid lightgrey;
-    width: 50%;
-    float: right;
-}
-
-/***********/
-
-.register-form form span::before {
-    display: inline;
-    content: "⚠ ";
-  }
-
-.error {
-    color: red;
-}

@@ -15,9 +15,9 @@ export const initializeFirebaseFramework = () => {
 
 
 //handle sign with email and password
-export const handleLoginSystem = (email, password) => {
+export const handleLoginSystem = (data) => {
 
-    return firebase.auth().signInWithEmailAndPassword(email, password)
+    return firebase.auth().signInWithEmailAndPassword(data.email, data.password)
     .then(response => {
         
         const signInWithEmailAndPassword = {
