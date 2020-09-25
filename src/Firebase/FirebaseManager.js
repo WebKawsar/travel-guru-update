@@ -20,8 +20,11 @@ export const handleLoginSystem = (data) => {
     return firebase.auth().signInWithEmailAndPassword(data.email, data.password)
     .then(response => {
         
+        const {displayName, email} = response.user;
         const signInWithEmailAndPassword = {
-
+            
+            name: displayName,
+            email: email,
             success: true,
             error: ""
 
@@ -33,7 +36,7 @@ export const handleLoginSystem = (data) => {
     .catch(error => {
 
         const signInWithEmailAndPasswordError = {
-
+            
             success: false,
             error: error.message
         };
@@ -53,19 +56,20 @@ export const handleRegisterSystem = (data) => {
 
         const newUserInfo = {
 
+            name: `${data.firstName} ${data.lastName}`,
+            email: data.email,
             success: true,
             error: ""
         }
-
+        updateUser(`${data.firstName} ${data.lastName}`);
         return newUserInfo;
     })
     .catch(error => {
 
-        const message = error.message;
         const newUserInfoError = {
 
             success: false,
-            error: message
+            error: error.message
         };
 
         return newUserInfoError;
@@ -110,6 +114,8 @@ export const facebookSignIn = () => {
 
 }
 
+
+
 // handle google sign in system
 export const googleSignIn = () => {
 
@@ -141,5 +147,26 @@ export const googleSignIn = () => {
 
         return googleSignInUserError
       });
+
+
+}
+
+/******* Current User profiles *************/
+
+const updateUser = (name) => {
+
+    const user = firebase.auth().currentUser;
+    user.updateProfile({
+
+        displayName: name
+    })
+    .then(response => {
+    
+        
+    })
+    .catch(error => {
+    
+
+    });
 
 }

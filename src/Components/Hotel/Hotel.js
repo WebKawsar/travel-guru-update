@@ -5,7 +5,7 @@ import "./Hotel.css";
 
 const Hotel = (props) => {
 
-    const {hotelName, description, imgUrl, bed, capacity, bedroom, baths, halfprice, totalPrice, ratings, ratingsPerson, starImg, place} = props.hotelInfo;
+    const {hotelName, description, imgUrl, bed, capacity, bedroom, baths, halfprice, totalPrice, ratings, ratingsPerson, starImg} = props.hotelInfo;
 
     return (
         <div className="hotel-info">
@@ -25,7 +25,7 @@ const Hotel = (props) => {
                             </div>
                             <p>{description}</p>
                             <div className="hotel-details-footer">
-                                <span><img className="ratings-image" src={starImg} alt=""/> {ratings} ({ratingsPerson})</span>
+                                <span><img className="ratings-image" src={starImg} alt=""/> {" " + ratings} ({ratingsPerson})</span>
                                 <span>$ {halfprice}/night</span>
                                 <span>$ {totalPrice}/total</span>
                             </div>

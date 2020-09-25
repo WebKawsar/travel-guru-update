@@ -23,21 +23,15 @@ const Register = (props) => {
         handleRegisterSystem(data)
         .then(response => {
 
-            if(response.success){
+            if(response.success && response.email){
                 const registerUser = {...loggedInUser, ...response};
 
-                registerUser.name = `${data.firstName} ${data.lastName}`;
-                registerUser.email = data.email;
-                registerUser.password = data.password;
-    
                 setLoggedInUser(registerUser);
                 history.replace(from);
             }
             else {
                 
-                const registerUserError = {...loggedInUser};
-                registerUserError.success = false;
-                registerUserError.error = response.error;
+                const registerUserError = {...loggedInUser, ...response};
 
                 setLoggedInUser(registerUserError);
             }

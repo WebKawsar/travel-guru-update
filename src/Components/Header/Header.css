@@ -2,6 +2,10 @@
     padding: 30px 0;
 }
 
+.header-section-color {
+    color: white;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -12,9 +16,33 @@
     justify-content: flex-end;
 }
 
+.logo-section {
+    float: left;
+}
+
 .logo-section img {
     width: 140px;
 }
+
+.search-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.search-section .search-input {
+    padding: 7px 45px;
+    display: block;
+    border-radius: 3px;
+    border: 2px solid lightgray;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+}
+
+
 
 .main-menu ul {
     margin: 0;
@@ -23,7 +51,7 @@
 }
 
 .main-menu ul li a {
-    padding: 12px 30px;
+    padding: 12px 25px;
     margin: 0 5px;
     text-decoration: none;
     color: black;

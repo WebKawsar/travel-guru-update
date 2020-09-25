@@ -4,9 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import SearchHotel from './Components/SearchHotel/SearchHotel';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import Booking from './Components/Booking/Booking';
-import Home from './Pages/Home';
 import LoginPage from './Pages/LoginPage';
+import BookingPage from './Pages/BookingPage';
+import HomePage from './Pages/HomePage';
+import Search from './Pages/Search';
+import NoMatch from './Pages/NoMatch';
 
 
 export const UserContext = createContext();
@@ -25,7 +27,7 @@ function App() {
 
 
           <Route path="/home">
-            <Home></Home>
+            <HomePage></HomePage>
           </Route>
 
           <Route path="/login">
@@ -33,18 +35,20 @@ function App() {
           </Route>
 
           <Route path="/tour/:place">
-            <Booking></Booking>
+            <BookingPage></BookingPage>
           </Route>
 
-          <PrivateRoute path="/booking/:place">
-            <SearchHotel></SearchHotel>
+          <PrivateRoute path="/booking">
+            <Search></Search>
           </PrivateRoute>
 
           <Route exact path="/">
-            <Home></Home>
+            <HomePage></HomePage>
           </Route>
 
-
+          <Route path="*">
+            <NoMatch></NoMatch>
+          </Route>
 
 
         </Switch>

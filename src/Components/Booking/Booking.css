@@ -1,12 +1,15 @@
-.booking-section {
+.booking-form-section {
     background-color: white;
     border-radius: 4px;
     padding: 30px;
     overflow: hidden;
 }
 
+.left-section h1 {
+    font-size: 70px;
+}
 
-.booking-section input {
+.booking-form-section input {
     padding: 13px 15px;
     border-radius: 4px;
     width: 100%;
@@ -14,18 +17,18 @@
     background-color: gainsboro;
 }
 
-.booking-section .left-date {
+.booking-form-section .left-date {
     width: 48%;
     float: left;
     margin-right: 4%;
 }
 
-.booking-section .right-date {
+.booking-form-section .right-date {
     width: 48%;
     overflow: hidden;
 }
 
-.booking-section select {
+.booking-form-section select {
     width: 100%;
     padding: 15px 0;
     border-radius: 4px;
@@ -34,21 +37,18 @@
 }
 
 
-.booking-section input[type="submit"] {
+.booking-form-section input[type="submit"] {
     margin-top: 20px;
     background-color: #F9A51A;
     border: 2px solid #F9A51A;
 }
 
-.place-details-section {
-    padding: 140px 0;
-    background-image: url("../../travel-guru-resources//Image/Rectangle\ 1.png");
-    background-size: 100% 100%;
-}
 
-.details h1,
-.details p {
+.left-section h1,
+.left-section p {
     color: white;
 }
 
-
+.booking-form-section .error {
+    color: red;
+}

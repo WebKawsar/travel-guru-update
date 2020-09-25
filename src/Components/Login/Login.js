@@ -23,14 +23,10 @@ const Login = (props) => {
         
         handleLoginSystem(data)
         .then(response => {
-            
-            if(response.success){
+
+            if(response.success && response.email){
                 
-                const loginUser = {...loggedInUser}
-                loginUser.email = data.email;
-                loginUser.password = data.password;
-                loginUser.success = true;
-                loginUser.error = "";
+                const loginUser = {...loggedInUser, ...response}
 
                 setLoggedInUser(loginUser);
                 history.replace(from);
@@ -50,6 +46,7 @@ const Login = (props) => {
 
     }
 
+    console.log(loggedInUser);
 
     const [show, setShow] = useState(true);
     return (

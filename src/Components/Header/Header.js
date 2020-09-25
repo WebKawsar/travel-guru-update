@@ -4,19 +4,25 @@ import logo from "../../travel-guru-resources/Logo.png";
 import { UserContext } from '../../App';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
-
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { Box } from '@material-ui/core';
 
 
-const Header = () => {
+const Header = (props) => {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
 
-    let history = useHistory();
-    let location = useLocation();
+    const history = useHistory();
+    const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
+
+
+    if(location.pathname === "/home" || location.pathname === "/"){
+        console.log("milse");
+    }
+
 
 
     const handleLogOut = () => {
@@ -35,15 +41,18 @@ const Header = () => {
     }
 
     return (
-        <div className="header-section">
-            <div className="row header">
-                <div className="col-md-6">
-                    <div className="logo-section">
+        <Box className="header-section">
+            <Box className="row header">
+                <Box className="col-md-6 d-flex align-items-center">
+                    <Box className="logo-section">
                         <Link to="/home"><img src={logo} alt=""/></Link>
-                    </div>
-                </div>
-                <div className="col-md-6">
-                    <div className="main-menu">
+                    </Box>
+                    {
+                        props.children
+                    }
+                </Box>
+                <Box className="col-md-6">
+                    <Box className="main-menu">
                         <ul className="navigation">
                             
                             <li><Link to="/home">News</Link></li>
@@ -56,10 +65,10 @@ const Header = () => {
                             }
                             
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </Box>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 

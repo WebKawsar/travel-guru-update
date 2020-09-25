@@ -1,5 +1,6 @@
-import React, { useContext} from 'react';
-import { Container } from 'react-bootstrap';
+import { Box } from '@material-ui/core';
+import React, { useContext, useEffect, useState} from 'react';
+import { Col, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../../App';
@@ -22,25 +23,25 @@ const Booking = () => {
         
         const newData = {...loggedInUser, bookingData};
         setLoggedInUser(newData);
-        history.push(`/booking/${place}`)
+
+        
+        localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+        history.push(`/booking`)
 
     }
 
-
-
     return (
-        <div className="place-details-section">
-            <Container>
-                
-                <div className="row">
-                    <div className="col-md-6">
-                        <div className="details">
+            <Box className="booking-details-section">
+                <Row>
+                    <Col md={6}>
+                        <Box className="left-section">
                             <h1>{placeName.toUpperCase()}</h1>
                             <p>{shortDestails}</p>
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className="booking-section">
+                        </Box>
+                    </Col>
+                    <Col md={6}>
+                        <Box className="booking-form-section">
                             <form onSubmit={ handleSubmit(onSubmit) }>
 
                                 <label htmlFor="origin">Origin</label>
@@ -67,25 +68,24 @@ const Booking = () => {
                                 {errors.destination && <p  className="error">{errors.destination.message}</p> }
                                 
 
-                                <div className="left-date">
+                                <Box className="left-date">
                                     <label htmlFor="from">From</label>
                                     <input ref={register({required: "Select start date" })} type="date" name="from" id="from" />
                                     {errors.from && <p  className="error">{errors.from.message}</p> }
-                                </div>
+                                </Box>
 
-                                <div className="right-date">
+                                <Box className="right-date">
                                     <label htmlFor="to">To</label>
                                     <input ref={register({required: "Select end date" })} type="date" name="to" id="to" />
                                     {errors.to && <p  className="error">{errors.to.message}</p> }
-                                </div>
+                                </Box>
 
                                 <input type="submit" value="Start Booking"/>
                             </form>
-                        </div>
-                    </div>
-                </div>
-            </Container>
-        </div>
+                        </Box>
+                    </Col>
+                </Row>
+            </Box>
     );
 };
 

@@ -51,7 +51,7 @@ const AltSignIn = () => {
                 const googleSignInUser = {...loggedInUser, ...response};
                 setLoggedInUser(googleSignInUser);
                 history.replace(from);
-
+                
               }
               else{
         
